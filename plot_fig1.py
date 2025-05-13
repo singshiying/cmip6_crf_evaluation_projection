@@ -9,6 +9,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cf
 from cartopy.util import add_cyclic_point
 from matplotlib.font_manager import FontProperties
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 font =FontProperties(family='Arial')
 plt.rcParams['font.family']=font.get_name()
 plt.rcParams['figure.figsize']=(5.5,4)
@@ -43,7 +44,7 @@ def draw(fig,axe,num,label,clev,data):
     axe.set_title(label,loc='left',fontsize=9)
     return c
     
-#%%
+%%
 fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
 fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.8,bottom=0.1)
 fig.set_dpi(600)
@@ -71,65 +72,65 @@ cb=fig.colorbar(c9,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
 cb.ax.tick_params(labelsize=9)
 plt.savefig('./fig/fig1.1.png',bbox_inches='tight')
 
-# %%
-# fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
-# fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.8,bottom=0.1)
-# fig.set_figheight(10)
-# fig.set_figwidth(16)
-# fig.set_dpi(300)
-# clev=np.arange(-100,101,10)
-# c1=draw(fig,axes[0][0],1,'(a) Sfc sw crf,AMME ',clev,model_mean[2,:,:])
-# c2=draw(fig,axes[0][1],2,'(b) Sfc lw crf,AMME ',clev,model_mean[3,:,:])
-# c3=draw(fig,axes[0][2],3,'(c) Sfc net crf,AMME    W m$^{-2}$',clev,model_mean[2,:,:]+model_mean[3,:,:])
-# c4=draw(fig,axes[1][0],4,'(d) Sfc sw crf,CERES ',clev,data_out[2,:,:,20])
-# c5=draw(fig,axes[1][1],5,'(e) Sfc lw crf,CERES ',clev,data_out[3,:,:,20])
-# c6=draw(fig,axes[1][2],6,'(f) Sfc net crf,CERES ',clev,data_out[2,:,:,20]+data_out[3,:,:,20])
-# clev=np.arange(-20,21,5)
-# c7=draw(fig,axes[2][0],7,'(h) Sfc sw crf,Bias ',clev,model_mean[2,:,:]-data_out[2,:,:,20])
-# c8=draw(fig,axes[2][1],8,'(i) Sfc lw crf,Bias ',clev,model_mean[3,:,:]-data_out[3,:,:,20])
-# c9=draw(fig,axes[2][2],9,'(j) Sfc net crf,Bias ',clev,model_mean[2,:,:]+model_mean[3,:,:]-data_out[2,:,:,20]-data_out[3,:,:,20])
-# position = fig.add_axes([0.92, 0.59, 0.010, 0.2])#位置[左,下,宽,高]
-# cb=fig.colorbar(c3,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
-# cb.ax.tick_params(labelsize=18)
-# # cb.set_ticks([-100,0,100],[-100,0,100])
-# # cb.set_label('W m$^{-2}$',rotation='horizontal',fontsize=18,position=(0.5,1.13))
-# position = fig.add_axes([0.92, 0.35, 0.010, 0.2])#位置[左,下,宽,高]
-# cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-# position = fig.add_axes([0.92, 0.11, 0.010, 0.2])#位置[左,下,宽,高]
-# cb.ax.tick_params(labelsize=18)
-# cb=fig.colorbar(c9,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-# cb.ax.tick_params(labelsize=18)
-# plt.savefig('fig1.2.png',bbox_inches='tight')
+%%
+fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
+fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.8,bottom=0.1)
+fig.set_figheight(10)
+fig.set_figwidth(16)
+fig.set_dpi(300)
+clev=np.arange(-100,101,10)
+c1=draw(fig,axes[0][0],1,'(a) Sfc sw crf,AMME ',clev,model_mean[2,:,:])
+c2=draw(fig,axes[0][1],2,'(b) Sfc lw crf,AMME ',clev,model_mean[3,:,:])
+c3=draw(fig,axes[0][2],3,'(c) Sfc net crf,AMME    W m$^{-2}$',clev,model_mean[2,:,:]+model_mean[3,:,:])
+c4=draw(fig,axes[1][0],4,'(d) Sfc sw crf,CERES ',clev,data_out[2,:,:,20])
+c5=draw(fig,axes[1][1],5,'(e) Sfc lw crf,CERES ',clev,data_out[3,:,:,20])
+c6=draw(fig,axes[1][2],6,'(f) Sfc net crf,CERES ',clev,data_out[2,:,:,20]+data_out[3,:,:,20])
+clev=np.arange(-20,21,5)
+c7=draw(fig,axes[2][0],7,'(h) Sfc sw crf,Bias ',clev,model_mean[2,:,:]-data_out[2,:,:,20])
+c8=draw(fig,axes[2][1],8,'(i) Sfc lw crf,Bias ',clev,model_mean[3,:,:]-data_out[3,:,:,20])
+c9=draw(fig,axes[2][2],9,'(j) Sfc net crf,Bias ',clev,model_mean[2,:,:]+model_mean[3,:,:]-data_out[2,:,:,20]-data_out[3,:,:,20])
+position = fig.add_axes([0.92, 0.59, 0.010, 0.2])#位置[左,下,宽,高]
+cb=fig.colorbar(c3,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
+cb.ax.tick_params(labelsize=18)
+# cb.set_ticks([-100,0,100],[-100,0,100])
+# cb.set_label('W m$^{-2}$',rotation='horizontal',fontsize=18,position=(0.5,1.13))
+position = fig.add_axes([0.92, 0.35, 0.010, 0.2])#位置[左,下,宽,高]
+cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
+position = fig.add_axes([0.92, 0.11, 0.010, 0.2])#位置[左,下,宽,高]
+cb.ax.tick_params(labelsize=18)
+cb=fig.colorbar(c9,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
+cb.ax.tick_params(labelsize=18)
+plt.savefig('fig1.2.png',bbox_inches='tight')
 
 
-# fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
-# fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.8,bottom=0.1)
-# fig.set_figheight(10)
-# fig.set_figwidth(16)
-# fig.set_dpi(300)
-# clev=np.arange(-100,101,10)
-# c1=draw(fig,axes[0][0],1,'(a) Atm sw crf,AMME ',clev,model_mean[0,:,:]-model_mean[2,:,:])#toa-sfc
-# c2=draw(fig,axes[0][1],2,'(b) Atm lw crf,AMME ',clev,model_mean[1,:,:]-model_mean[3,:,:])
-# c3=draw(fig,axes[0][2],3,'(c) Atm net crf,AMME    W m$^{-2}$',clev,model_mean[0,:,:]-model_mean[2,:,:]+model_mean[1,:,:]-model_mean[3,:,:])
-# c4=draw(fig,axes[1][0],4,'(d) Atm sw crf,CERES ',clev,data_out[0,:,:,20]-data_out[2,:,:,20])
-# c5=draw(fig,axes[1][1],5,'(e) Atm lw crf,CERES ',clev,data_out[1,:,:,20]-data_out[3,:,:,20])
-# c6=draw(fig,axes[1][2],6,'(f) Atm net crf,CERES ',clev,data_out[0,:,:,20]-data_out[2,:,:,20]+data_out[1,:,:,20]-data_out[3,:,:,20])
-# clev=np.arange(-20,21,5)
-# c7=draw(fig,axes[2][0],7,'(h) Atm sw crf,Bias ',clev,model_mean[0,:,:]-model_mean[2,:,:]-data_out[0,:,:,20]+data_out[2,:,:,20])
-# c8=draw(fig,axes[2][1],8,'(i) Atm lw crf,Bias ',clev,model_mean[1,:,:]-model_mean[3,:,:]-data_out[1,:,:,20]+data_out[3,:,:,20])
-# c9=draw(fig,axes[2][2],9,'(j) Atm net crf,Bias ',clev,model_mean[0,:,:]-model_mean[2,:,:]+model_mean[1,:,:]-model_mean[3,:,:]-data_out[0,:,:,20]+data_out[2,:,:,20]-data_out[1,:,:,20]+data_out[3,:,:,20])
-# position = fig.add_axes([0.92, 0.59, 0.010, 0.2])#位置[左,下,宽,高]
-# cb=fig.colorbar(c3,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
-# cb.ax.tick_params(labelsize=18)
-# # cb.set_ticks([-100,0,100],[-100,0,100])
-# # cb.set_label('W m$^{-2}$',rotation='horizontal',fontsize=18,position=(0.5,1.13))
-# position = fig.add_axes([0.92, 0.35, 0.010, 0.2])#位置[左,下,宽,高]
-# cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-# position = fig.add_axes([0.92, 0.11, 0.010, 0.2])#位置[左,下,宽,高]
-# cb.ax.tick_params(labelsize=18)
-# cb=fig.colorbar(c9,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-# cb.ax.tick_params(labelsize=18)
-# plt.savefig('fig1.3.png',bbox_inches='tight')
+fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
+fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.8,bottom=0.1)
+fig.set_figheight(10)
+fig.set_figwidth(16)
+fig.set_dpi(300)
+clev=np.arange(-100,101,10)
+c1=draw(fig,axes[0][0],1,'(a) Atm sw crf,AMME ',clev,model_mean[0,:,:]-model_mean[2,:,:])#toa-sfc
+c2=draw(fig,axes[0][1],2,'(b) Atm lw crf,AMME ',clev,model_mean[1,:,:]-model_mean[3,:,:])
+c3=draw(fig,axes[0][2],3,'(c) Atm net crf,AMME    W m$^{-2}$',clev,model_mean[0,:,:]-model_mean[2,:,:]+model_mean[1,:,:]-model_mean[3,:,:])
+c4=draw(fig,axes[1][0],4,'(d) Atm sw crf,CERES ',clev,data_out[0,:,:,20]-data_out[2,:,:,20])
+c5=draw(fig,axes[1][1],5,'(e) Atm lw crf,CERES ',clev,data_out[1,:,:,20]-data_out[3,:,:,20])
+c6=draw(fig,axes[1][2],6,'(f) Atm net crf,CERES ',clev,data_out[0,:,:,20]-data_out[2,:,:,20]+data_out[1,:,:,20]-data_out[3,:,:,20])
+clev=np.arange(-20,21,5)
+c7=draw(fig,axes[2][0],7,'(h) Atm sw crf,Bias ',clev,model_mean[0,:,:]-model_mean[2,:,:]-data_out[0,:,:,20]+data_out[2,:,:,20])
+c8=draw(fig,axes[2][1],8,'(i) Atm lw crf,Bias ',clev,model_mean[1,:,:]-model_mean[3,:,:]-data_out[1,:,:,20]+data_out[3,:,:,20])
+c9=draw(fig,axes[2][2],9,'(j) Atm net crf,Bias ',clev,model_mean[0,:,:]-model_mean[2,:,:]+model_mean[1,:,:]-model_mean[3,:,:]-data_out[0,:,:,20]+data_out[2,:,:,20]-data_out[1,:,:,20]+data_out[3,:,:,20])
+position = fig.add_axes([0.92, 0.59, 0.010, 0.2])#位置[左,下,宽,高]
+cb=fig.colorbar(c3,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
+cb.ax.tick_params(labelsize=18)
+# cb.set_ticks([-100,0,100],[-100,0,100])
+# cb.set_label('W m$^{-2}$',rotation='horizontal',fontsize=18,position=(0.5,1.13))
+position = fig.add_axes([0.92, 0.35, 0.010, 0.2])#位置[左,下,宽,高]
+cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
+position = fig.add_axes([0.92, 0.11, 0.010, 0.2])#位置[左,下,宽,高]
+cb.ax.tick_params(labelsize=18)
+cb=fig.colorbar(c9,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
+cb.ax.tick_params(labelsize=18)
+plt.savefig('fig1.3.png',bbox_inches='tight')
 
 #%%
 def drawc(fig,axe,num,label,clev,data):
@@ -156,11 +157,38 @@ fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.8,bottom=0.1)
 fig.set_figheight(2)
 fig.set_dpi(300)
 clev=np.arange(-100,101,10)
-c1=drawc(fig,axes[0],1,'(a) CLT,AMME ',clev,model_mean[4,:,:])
-c2=drawc(fig,axes[1],2,'(b) CLT,ISCCP-H ',clev,data_out[4,:,:,20])
+pdata1, plon1 = add_cyclic_point(model_mean[4,:,:], coord=olon)
+c1 = axes[0].contourf(plon1, olat, pdata1, clev, transform=ccrs.PlateCarree(central_longitude=0), cmap='Greens', extend='both')
+axes[0].set_global()
+axes[0].coastlines(resolution='110m', linewidth=0.75)
+axes[0].set_yticks([-60,-30,0,30,60])
+axes[0].set_yticklabels(['60$^\circ$S','30$^\circ$S','0','30$^\circ$N','60$^\circ$N'],fontsize=9)
+axes[0].set_xticks([-90,0,90])
+axes[0].set_xticklabels(['90$^\circ$E','0','90$^\circ$W'],fontsize=9)
+axes[0].set_title('(a) CLT,AMME ', loc='left', fontsize=9)
+
+# 第二个子图用Greens色带
+pdata2, plon2 = add_cyclic_point(data_out[4,:,:,20], coord=olon)
+c2 = axes[1].contourf(plon2, olat, pdata2, clev, transform=ccrs.PlateCarree(central_longitude=0), cmap='Greens', extend='both')
+axes[1].set_global()
+axes[1].coastlines(resolution='110m', linewidth=0.75)
+axes[1].set_yticks([])
+axes[1].set_xticks([-90,0,90])
+axes[1].set_xticklabels(['90$^\circ$E','0','90$^\circ$W'],fontsize=9)
+axes[1].set_title('(b) CLT,ISCCP-H ', loc='left', fontsize=9)
+
+# 在第二个子图右侧加colorbar
+divider = make_axes_locatable(axes[1])
+cax2 = divider.append_axes("right", size="5%", pad=0.05)
+cb2 = plt.colorbar(c2, cax=cax2)
+cb2.ax.tick_params(labelsize=9)
+
+# 第三个子图
 clev=np.arange(-40,41,5)
 c3=drawc(fig,axes[2],3,'(c) CLT,Bias                      %',clev,model_mean[4,:,:]-data_out[4,:,:,20])
 c3.set_clim(vmin=-40,vmax=40)
+
+# 原有的总colorbar
 position = fig.add_axes([0.92, 0.25, 0.010, 0.45])#位置[左,下,宽,高]
 cb=fig.colorbar(c3,shrink=0.8,cax=position, format='% 1.0f')
 cb.ax.tick_params(labelsize=9)
@@ -170,7 +198,7 @@ cb.set_ticks([ -40,-30,-20,-10,10,0,10,20,30,40])
 # cb.set_label('W m$^{-2}$',rotation='horizontal',fontsize=18,position=(0.5,1.13))
 plt.savefig('/data04/shiy/code_cloud/code_paper_7.13/fig/fig1.4.png',bbox_inches='tight')
 
-#%%
+%%
 fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
 fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.8,bottom=0.1)
 fig.set_figheight(10)
