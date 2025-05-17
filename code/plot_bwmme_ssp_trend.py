@@ -18,12 +18,16 @@ plt.rcParams['font.family']=font.get_name()
 # bmme=['CMCC-CM2-SR5','EC-Earth3-CC','MPI-ESM1-2-HR','MPI-ESM1-2-LR']
 # wmme=['CAS-ESM2-0','FGOALS-g3','INM-CM4-8','NESM3']
 ##based on clt
-bmme=['MPI-ESM1-2-LR','MIROC6','EC-Earth3-CC']
-wmme=['ACCESS-CM2','CESM2-WACCM','CAS-ESM2-0']
-#based on crf
-bmme=['EC-Earth3-CC','CESM2-WACCM','ACCESS-CM2']
-wmme=['CAS-ESM2-0','FGOALS-g3','INM-CM4-8']
-wmme=['CAS-ESM2-0']
+# bmme=['MPI-ESM1-2-LR','MIROC6','EC-Earth3-CC']
+# wmme=['ACCESS-CM2','CESM2-WACCM','CAS-ESM2-0']
+# #based on crf
+# bmme=['EC-Earth3-CC','CESM2-WACCM','ACCESS-CM2']
+# wmme=['CAS-ESM2-0','FGOALS-g3','INM-CM4-8']
+
+##clt only 60NS
+##based on all
+bmme=['CESM2-WACCM','EC-Earth3-CC','MPI-ESM1-2-HR','ACCESS-CM2']
+wmme=['CAS-ESM2-0','FGOALS-g3','INM-CM4-8','NESM3']
 
 
 ##读取ceres的200101-201412数据
