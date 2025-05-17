@@ -31,11 +31,32 @@ for m in range(len(models)):
 #某变量的rank score与cloud feedback是否具有相关性
 csri_rank=xr.open_dataarray('../data/csr_vi_rank_score_21x35.nc')
 
-csr=np.mean(csri_rank[:20,[3,10,17,24,31]],1)
-vi=np.mean(csri_rank[:20,[6,13,20,27,34]],1)
-svi=np.mean(csri_rank[:20,[5,12,19,26,33]],1)
-csr_vi=np.mean(csri_rank[:20,[3,6,10,13,17,20,24,27,31,34]],1)
+csr2=np.mean(csri_rank[:20,[3,10,17,24,31]],1)
+vi2=np.mean(csri_rank[:20,[6,13,20,27,34]],1)
+svi2=np.mean(csri_rank[:20,[5,12,19,26,33]],1)
+csr_vi2=np.mean(csri_rank[:20,[3,6,10,13,17,20,24,27,31,34]],1)
+###based on crf
+csr=np.mean(csri_rank[:20,[3,10,17,24]],1)
+vi=np.mean(csri_rank[:20,[6,13,20,27]],1)
+svi=np.mean(csri_rank[:20,[5,12,19,26]],1)
+csr_vi=np.mean(csri_rank[:20,[3,6,10,13,17,20,24,27]],1)
+###based on clt
+csr1=np.mean(csri_rank[:20,[31]],1)
+vi1=np.mean(csri_rank[:20,[34]],1)
+svi1=np.mean(csri_rank[:20,[33]],1)
+csr_vi1=np.mean(csri_rank[:20,[31,34]],1)
+
 print('csr,cf',np.corrcoef(csr,CF)[0,1])
 print('vi,cf',np.corrcoef(vi,CF)[0,1])
 print('svi,cf',np.corrcoef(svi,CF)[0,1])
 print('csr_vi,cf',np.corrcoef(csr_vi,CF)[0,1])
+
+print('csr1,cf',np.corrcoef(csr1,CF)[0,1])
+print('vi1,cf',np.corrcoef(vi1,CF)[0,1])
+print('svi1,cf',np.corrcoef(svi1,CF)[0,1])
+print('csr_vi1,cf',np.corrcoef(csr_vi1,CF)[0,1])
+
+print('csr2,cf',np.corrcoef(csr2,CF)[0,1])
+print('vi2,cf',np.corrcoef(vi2,CF)[0,1])
+print('svi2,cf',np.corrcoef(svi2,CF)[0,1])
+print('csr_vi2,cf',np.corrcoef(csr_vi2,CF)[0,1])
