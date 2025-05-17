@@ -1,0 +1,8 @@
+plot_clt_map
+plot_crf_map
+plot_taylor_diagram
+plot_variability_index
+plot_heatmap_model_score
+plot_rank_kendall
+plot_bwmme_clt_crf_map
+plot_bwmme_svi_avi
