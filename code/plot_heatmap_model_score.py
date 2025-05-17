@@ -86,7 +86,8 @@ for v in range(5):
 print('----')
 print(np.mean(csr_rank[:,[3,6,10,13,17,20,24,27,31,34]],1))
 #####依据总分数从小到大排序
-index1=np.argsort(np.mean(csr_rank[:,[3,6,10,13,17,20,24,27,31,34]],1))
+# index1=np.argsort(np.mean(csr_rank[:,[3,6,10,13,17,20,24,27,31,34]],1))
+index1=np.argsort(np.mean(csr_rank[:,[3,4,5,10,11,12,17,18,19,24,25,26,31,32,33]],1))
 models_p1=models
 models_p1=np.array(models)[index1]
 csr_rank_p1=csr_rank[index1,:]
