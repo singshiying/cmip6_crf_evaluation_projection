@@ -4,5 +4,9 @@ plot_taylor_diagram
 plot_variability_index
 plot_heatmap_model_score
 plot_rank_kendall
+cal_csrvi_rank
+pick_out_BMME_WMME
 plot_bwmme_clt_crf_map
 plot_bwmme_svi_avi
+plot_bwmme_ssp_trend
+plot_score_cloudfeedback
