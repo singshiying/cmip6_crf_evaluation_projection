@@ -10,3 +10,8 @@ plot_bwmme_clt_crf_map
 plot_bwmme_svi_avi
 plot_bwmme_ssp_trend
 plot_score_cloudfeedback
+
+
+cal_fig1
+cal_fig4_s2_v2
+cal_fig4_s3_v2

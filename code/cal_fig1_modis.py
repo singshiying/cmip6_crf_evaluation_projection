@@ -197,9 +197,9 @@ clmodisobs=da_modis.transpose('time','latitude','longitude').interp(latitude=lat
 clt=clmodisobs.loc['2003-01-01':'2014-12-30',-90:90,0:360]
 data_out[4,:,:,len(models)]=clt.mean(('time')).values
 
-da = os.path.exists('fig1_modis.npy')
+da = os.path.exists('../data/fig1_modis.npy')
 if da:
-    os.remove('fig1_modis.npy')
+    os.remove('../data/fig1_modis.npy')
 
 print(data_out.shape)
-np.save('fig1_modis.npy',data_out)
+np.save('../data/fig1_modis.npy',data_out)
