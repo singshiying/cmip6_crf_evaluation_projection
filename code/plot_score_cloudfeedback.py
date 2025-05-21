@@ -31,6 +31,7 @@ for m in range(len(models)):
 #某变量的rank score与cloud feedback是否具有相关性
 csri_rank=xr.open_dataarray('../data/csr_vi_rank_score_21x35.nc')
 csri_rank_60NS=xr.open_dataarray('../data/csr_vi_rank_score_21x35_60NS.nc')
+csri_rank_modis=xr.open_dataarray('../data/csr_vi_rank_score_21x35_modis.nc')
 
 csr2=np.mean(csri_rank[:20,[3,10,17,24,31]],1)
 vi2=np.mean(csri_rank[:20,[6,13,20,27,34]],1)
@@ -62,6 +63,22 @@ csr1_60NS=np.mean(csri_rank_60NS[:20,[31]],1)
 vi1_60NS=np.mean(csri_rank_60NS[:20,[34]],1)
 svi1_60NS=np.mean(csri_rank_60NS[:20,[33]],1)
 csr_vi1_60NS=np.mean(csri_rank_60NS[:20,[31,34]],1)
+####################################################
+###clt is not from isccp but from modis
+csr2_modis=np.mean(csri_rank_modis[:20,[3,10,17,24,31]],1)
+vi2_modis=np.mean(csri_rank_modis[:20,[6,13,20,27,34]],1)
+svi2_modis=np.mean(csri_rank_modis[:20,[5,12,19,26,33]],1)
+csr_vi2_modis=np.mean(csri_rank_modis[:20,[3,6,10,13,17,20,24,27,31,34]],1)
+###based on crf
+csr_modis=np.mean(csri_rank_modis[:20,[3,10,17,24]],1)
+vi_modis=np.mean(csri_rank_modis[:20,[6,13,20,27]],1)
+svi_modis=np.mean(csri_rank_modis[:20,[5,12,19,26]],1)
+csr_vi_modis=np.mean(csri_rank_modis[:20,[3,6,10,13,17,20,24,27]],1)
+###based on clt
+csr1_modis=np.mean(csri_rank_modis[:20,[31]],1)
+vi1_modis=np.mean(csri_rank_modis[:20,[34]],1)
+svi1_modis=np.mean(csri_rank_modis[:20,[33]],1)
+csr_vi1_modis=np.mean(csri_rank_modis[:20,[31,34]],1)
 
 print('csr,cf',np.corrcoef(csr,CF)[0,1])
 print('vi,cf',np.corrcoef(vi,CF)[0,1])
@@ -92,3 +109,19 @@ print('csr2_60NS,cf',np.corrcoef(csr2_60NS,CF)[0,1])
 print('vi2_60NS,cf',np.corrcoef(vi2_60NS,CF)[0,1])
 print('svi2_60NS,cf',np.corrcoef(svi2_60NS,CF)[0,1])
 print('csr_vi2_60NS,cf',np.corrcoef(csr_vi2_60NS,CF)[0,1])
+
+print('--------------------------------')
+print('csr_modis,cf',np.corrcoef(csr_modis,CF)[0,1])
+print('vi_modis,cf',np.corrcoef(vi_modis,CF)[0,1])
+print('svi_modis,cf',np.corrcoef(svi_modis,CF)[0,1])
+print('csr_vi_modis,cf',np.corrcoef(csr_vi_modis,CF)[0,1])
+
+print('csr1_modis,cf',np.corrcoef(csr1_modis,CF)[0,1])
+print('vi1_modis,cf',np.corrcoef(vi1_modis,CF)[0,1])
+print('svi1_modis,cf',np.corrcoef(svi1_modis,CF)[0,1])
+print('csr_vi1_modis,cf',np.corrcoef(csr_vi1_modis,CF)[0,1])
+
+print('csr2_modis,cf',np.corrcoef(csr2_modis,CF)[0,1])
+print('vi2_modis,cf',np.corrcoef(vi2_modis,CF)[0,1])
+print('svi2_modis,cf',np.corrcoef(svi2_modis,CF)[0,1])
+print('csr_vi2_modis,cf',np.corrcoef(csr_vi2_modis,CF)[0,1])

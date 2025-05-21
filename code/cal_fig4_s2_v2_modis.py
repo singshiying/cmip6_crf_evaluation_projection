@@ -27,12 +27,12 @@ cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rsut=xr.open_dataset(cas_path)['rsut'].loc['2001-01-01':'2014-12-30',-90:90,0:360]
+rsut=xr.open_dataset(cas_path)['rsut'].loc['2003-01-01':'2014-12-30',-90:90,0:360]
 cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p1f1/Amon/rsutcs/'
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rsutcs=xr.open_dataset(cas_path)['rsutcs'].loc['2001-01-01':'2014-12-30',-90:90,0:360]
+rsutcs=xr.open_dataset(cas_path)['rsutcs'].loc['2003-01-01':'2014-12-30',-90:90,0:360]
 sw_crf=rsutcs-rsut
 sw_crf=sw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
 # sw_crf.data=sw_crf.data/time_lat_lon_weight
@@ -44,12 +44,12 @@ cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rlutcs=xr.open_dataset(cas_path)['rlutcs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+rlutcs=xr.open_dataset(cas_path)['rlutcs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
 cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p1f1/Amon/rlut/'
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rlut=xr.open_dataset(cas_path)['rlut'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+rlut=xr.open_dataset(cas_path)['rlut'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
 lw_crf=rlutcs-rlut
 lw_crf=lw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
 lw_crf_weighted_mean=lw_crf.groupby('time.month').mean()
@@ -60,22 +60,22 @@ cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rsus=xr.open_dataset(cas_path)['rsus'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+rsus=xr.open_dataset(cas_path)['rsus'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
 cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p1f1/Amon/rsds/'
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rsds=xr.open_dataset(cas_path)['rsds'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+rsds=xr.open_dataset(cas_path)['rsds'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
 cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p1f1/Amon/rsdscs/'
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rsdscs=xr.open_dataset(cas_path)['rsdscs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+rsdscs=xr.open_dataset(cas_path)['rsdscs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
 cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p1f1/Amon/rsuscs/'
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rsuscs=xr.open_dataset(cas_path)['rsuscs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+rsuscs=xr.open_dataset(cas_path)['rsuscs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
 sfc_sw_crf=rsds-rsus-rsdscs+rsuscs
 sfc_sw_crf=sfc_sw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
 data_out[2,:,:,:,4]=sfc_sw_crf.groupby('time.month').mean().values
@@ -85,12 +85,12 @@ cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rldscs=xr.open_dataset(cas_path)['rldscs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+rldscs=xr.open_dataset(cas_path)['rldscs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
 cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p1f1/Amon/rlds/'
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-rlds=xr.open_dataset(cas_path)['rlds'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+rlds=xr.open_dataset(cas_path)['rlds'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
 sfc_lw_crf=rlds-rldscs
 sfc_lw_crf=sfc_lw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
 data_out[3,:,:,:,4]=sfc_lw_crf.groupby('time.month').mean().values
@@ -99,7 +99,7 @@ cas_his='/data03/cmip6/post-new/CMIP6/CMIP6/CMIP/CAS/CAS-ESM2-0/historical/r1i1p
 cas_path=cas_his+os.listdir(cas_his)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]+'/'
 cas_path=cas_path+os.listdir(cas_path)[0]
-clt=xr.open_dataset(cas_path)['clt'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+clt=xr.open_dataset(cas_path)['clt'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
 clt=clt.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
 data_out[4,:,:,:,4]=clt.groupby('time.month').mean().values
 for m in range(len(models)):
@@ -107,38 +107,38 @@ for m in range(len(models)):
         print(models[m])
         #求swcrf
         fhis=glob.glob(model_his+models[m]+'/rsutcs_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rsutcs=xr.open_dataset(fhis)['rsutcs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+        rsutcs=xr.open_dataset(fhis)['rsutcs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
         fhis=glob.glob(model_his+models[m]+'/rsut_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rsut=xr.open_dataset(fhis)['rsut'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+        rsut=xr.open_dataset(fhis)['rsut'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
         sw_crf=rsutcs-rsut
         sw_crf=sw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
         # sw_crf.data=sw_crf.data/time_lat_lon_weight
         data_out[0,:,:,:,m]=sw_crf.groupby('time.month').mean().values
         #求lwcrf
         fhis=glob.glob(model_his+models[m]+'/rlutcs_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rlutcs=xr.open_dataset(fhis)['rlutcs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+        rlutcs=xr.open_dataset(fhis)['rlutcs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
         fhis=glob.glob(model_his+models[m]+'/rlut_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rlut=xr.open_dataset(fhis)['rlut'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+        rlut=xr.open_dataset(fhis)['rlut'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
         lw_crf=rlutcs-rlut
         lw_crf=lw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
         data_out[1,:,:,:,m]=lw_crf.groupby('time.month').mean().values
         #求sfc sw cre
         fhis=glob.glob(model_his+models[m]+'/rsds_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rsds=xr.open_dataset(fhis)['rsds'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+        rsds=xr.open_dataset(fhis)['rsds'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
         fhis=glob.glob(model_his+models[m]+'/rsus_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rsus=xr.open_dataset(fhis)['rsus'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+        rsus=xr.open_dataset(fhis)['rsus'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
         fhis=glob.glob(model_his+models[m]+'/rsuscs_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rsuscs=xr.open_dataset(fhis)['rsuscs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+        rsuscs=xr.open_dataset(fhis)['rsuscs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
         fhis=glob.glob(model_his+models[m]+'/rsdscs_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rsdscs=xr.open_dataset(fhis)['rsdscs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+        rsdscs=xr.open_dataset(fhis)['rsdscs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
         sfc_sw_crf=rsds-rsus-rsdscs+rsuscs
         sfc_sw_crf=sfc_sw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
         data_out[2,:,:,:,m]=sfc_sw_crf.groupby('time.month').mean().values
         #求sfc lw cre
         fhis=glob.glob(model_his+models[m]+'/rlds_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rlds=xr.open_dataset(fhis)['rlds'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+        rlds=xr.open_dataset(fhis)['rlds'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
         fhis=glob.glob(model_his+models[m]+'/rldscs_Amon_'+models[m]+'_historical_r1i1p1f1'+'*185001-201412.nc')[0]
-        rldscs=xr.open_dataset(fhis)['rldscs'].loc['2001-01-01':'2014-12-30',-90:90,0:360] 
+        rldscs=xr.open_dataset(fhis)['rldscs'].loc['2003-01-01':'2014-12-30',-90:90,0:360] 
         sfc_lw_crf=rlds-rldscs
         sfc_lw_crf=sfc_lw_crf.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
         data_out[3,:,:,:,m]=sfc_lw_crf.groupby('time.month').mean().values
@@ -148,7 +148,7 @@ for m in range(len(models)):
         #     # print('CIESM')
         #     clt=xr.open_dataset(fhis)['clt'].loc['2001-01-01':'2014-12-30',-90:90,0:360]*100 #240x48x192
         # else:
-        clt=xr.open_dataset(fhis)['clt'].loc['2001-01-01':'2014-12-30',-90:90,0:360] #240x48x192
+        clt=xr.open_dataset(fhis)['clt'].loc['2003-01-01':'2014-12-30',-90:90,0:360] #240x48x192
         clt=clt.interp(lat=olat,lon=olon,kwargs={'fill_value': 'extrapolate'})
         data_out[4,:,:,:,m]=clt.groupby('time.month').mean().values
 
@@ -157,18 +157,47 @@ print('obs')
 ##读取ceres的200101-201412数据
 ceres_path='/data04/shiy/observation/CERES_EBAF_Edition4.1_200003-202011.nc'
 fc=xr.open_dataset(ceres_path)
-sw_crf=fc['toa_cre_sw_mon'].loc['2001-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
+sw_crf=fc['toa_cre_sw_mon'].loc['2003-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
 # sw_crf.data=sw_crf.data/time_lat_lon_weight
 data_out[0,:,:,:,len(models)]=sw_crf.groupby('time.month').mean().values
-lw_crf=fc['toa_cre_lw_mon'].loc['2001-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
+lw_crf=fc['toa_cre_lw_mon'].loc['2003-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
 data_out[1,:,:,:,len(models)]=lw_crf.groupby('time.month').mean().values
-sfc_sw_crf=fc['sfc_cre_net_sw_mon'].loc['2001-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
+sfc_sw_crf=fc['sfc_cre_net_sw_mon'].loc['2003-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
 data_out[2,:,:,:,len(models)]=sfc_sw_crf.groupby('time.month').mean().values
-sfc_lw_crf=fc['sfc_cre_net_lw_mon'].loc['2001-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
+sfc_lw_crf=fc['sfc_cre_net_lw_mon'].loc['2003-01-01':'2014-12-30',-90:90,0:360]#time,lat,lon
 data_out[3,:,:,:,len(models)]=sfc_lw_crf.groupby('time.month').mean().values
 #读取ISCCP-h
-isccp_path='/data04/shiy/observation/isccph/isccp-basic.HGM.200101-201412.nc'
-clt=xr.open_dataset(isccp_path)['cldamt'].loc['2001-01-01':'2014-12-30',-90:90,0:360]
+# isccp_path='/data04/shiy/observation/isccph/isccp-basic.HGM.200101-201412.nc'
+#读取ISCCP-h
+all_files=[]
+path='/data04/shiy/observation/MCD06COSP_M3_MODIS/'
+filepath=os.listdir(path)[1:13]
+for i in range(12):
+    filepath[i]=path+filepath[i]+'/'
+    temp=os.listdir(filepath[i])[0:12]
+    for j in range(12):
+        temp2=filepath[i]+temp[j]+'/'
+        all_files.append(glob.glob(temp2+'*.nc'))
+
+time_m=pd.date_range("2003-01-01", periods=144,freq='MS')
+lon=xr.open_dataset(all_files[0][0],group='Cloud_Mask_Fraction')['longitude']
+lat=xr.open_dataset(all_files[0][0],group='Cloud_Mask_Fraction')['latitude']
+file_new=[]
+for i in range(len(all_files)):
+    file=xr.open_dataset(all_files[i][0],group='Cloud_Mask_Fraction')['Mean']
+    file_new.append(file)
+da_modis=xr.concat(file_new,dim='time')
+da_modis['time']=time_m
+da_modis['longitude']=lon
+da_modis['latitude']=lat-90
+lat=np.arange(-89.5,90,1)
+lon=np.arange(0.5,360,1)
+temp1=da_modis.data[:,180:360,:].copy()
+temp2=da_modis.data[:,0:180,:].copy()
+da_modis.data[:,0:180,:]=temp1
+da_modis.data[:,180:360,:]=temp2
+clmodisobs=da_modis.transpose('time','latitude','longitude').interp(latitude=lat,longitude=lon,method='linear')
+clt=clmodisobs.loc['2003-01-01':'2014-12-30',-90:90,0:360]
 data_out[4,:,:,:,len(models)]=clt.groupby('time.month').mean().values
 
 def cal_VI(ref,sample):
@@ -189,9 +218,9 @@ data_out2=np.zeros((5,180,360,21))
 data_out2[:,:,:,0:20]=cal_VI(data_out[:,:,:,:,20],data_out[:,:,:,:,0:20])
 data_out2[:,:,:,20]=cal_VI2(data_out[:,:,:,:,20],data_out[:,:,:,:,0:20])
 # data_out2[:,:,:,20]=np.nanmean(data_out2[:,:,:,0:20],3)
-da = os.path.exists('fig4_s2_v2.npy')
+da = os.path.exists('../data/fig4_s2_v2_modis.npy')
 if da:
-    os.remove('fig4_s2_v2.npy')
+    os.remove('../data/fig4_s2_v2_modis.npy')
 
 print(data_out2.shape)
-np.save('fig4_s2_v2.npy',data_out2)
+np.save('../data/fig4_s2_v2_modis.npy',data_out2)
