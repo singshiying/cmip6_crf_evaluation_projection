@@ -17,27 +17,29 @@ olon=np.arange(0.5,360,1)
 models=['ACCESS-CM2','ACCESS-ESM1-5','BCC-CSM2-MR','CanESM5','CAS-ESM2-0','CESM2-WACCM','CMCC-CM2-SR5','EC-Earth3-CC','FGOALS-g3','GFDL-ESM4','INM-CM4-8','INM-CM5-0','IPSL-CM6A-LR','KACE-1-0-G','KIOST-ESM','MIROC6','MPI-ESM1-2-HR','MPI-ESM1-2-LR','MRI-ESM2-0','NESM3','OBS']
 data_out_xr=xr.DataArray(data_out,coords=[np.arange(0,5,1),olat,olon,models],dims=['vars','lat','lon','models'])
 
-bmme=['EC-Earth3-CC','MPI-ESM1-2-HR','MPI-ESM1-2-LR','CMCC-CM2-SR5']
+bmme=['EC-Earth3-CC','MPI-ESM1-2-HR','CESM2-WACCM','GFDL-ESM4']
 wmme=['FGOALS-g3','CAS-ESM2-0','NESM3','INM-CM4-8']
 
 def draw(fig,axe,num,label,clev,data):
     pdata, plon = add_cyclic_point(data, coord=olon)
     if num==5 or num==6:
         c=axe.contourf(plon,olat,pdata,clev,transform=ccrs.PlateCarree(),cmap='BrBG', extend='both')
+        axe.set_ylim(-60,60)
     else:
         c=axe.contourf(plon,olat,pdata,clev,transform=ccrs.PlateCarree(),cmap='bwr', extend='both')
     axe.coastlines(resolution='110m', linewidth=0.75)
     if num==1 or num==3 or num==5:
         axe.set_yticks([-60,-30,0,30,60])
-        axe.set_yticklabels(['60$^\circ$S','30$^\circ$S','0','30$^\circ$N','60$^\circ$N'],fontsize=18)
+        axe.set_yticklabels(['60$^\circ$S','30$^\circ$S','0','30$^\circ$N','60$^\circ$N'],fontsize=9)
     else:
         axe.set_yticks([])
     if num==5 or num==6 or num==9:
         axe.set_xticks([-90,0,90])
-        axe.set_xticklabels(['90$^\circ$E','0','90$^\circ$W'],fontsize=18)
+        axe.set_xticklabels(['90$^\circ$E','0','90$^\circ$W'],fontsize=9)
     else:
         axe.set_xticks([])
-    axe.set_title(label,loc='left',fontsize=24)
+    axe.set_title(label,loc='left',fontsize=9)
+    axe.set_aspect('auto')
     return c
 
 t1=data_out_xr.loc[0,:,:,list(set(bmme))].mean('models')+data_out_xr.loc[1,:,:,list(set(bmme))].mean('models')-(data_out_xr.loc[0,:,:,'OBS']+data_out_xr.loc[1,:,:,'OBS'])
@@ -48,21 +50,25 @@ t5=data_out_xr.loc[4,:,:,bmme].mean('models')-data_out_xr.loc[4,:,:,'OBS']
 t6=data_out_xr.loc[4,:,:,wmme].mean('models')-data_out_xr.loc[4,:,:,'OBS']
 
 fig,axes=plt.subplots(3,2,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
-fig.subplots_adjust(wspace=0.05,hspace=0.17,right=0.9,top=0.8,bottom=0.1)
-fig.set_figheight(11)
-fig.set_figwidth(13)
+
+fig.subplots_adjust(wspace=0.05,hspace=0.17,right=0.9,top=0.9,bottom=0.1)
+fig.set_figheight(6)
+fig.set_figwidth(5.5)
 fig.set_dpi(300)
 clev=np.arange(-50,51,5)
 c1=draw(fig,axes[0][0],1,'(a) TOA NETCRF,BMME ',clev,t1)
-c2=draw(fig,axes[0][1],2,'(b) TOA NETCRF,WMME         W m$^{-2}$',clev,t2)
+c2=draw(fig,axes[0][1],2,'(b) TOA NETCRF,WMME ',clev,t2)
 c3=draw(fig,axes[1][0],3,'(c) ATM NETCRF,BMME ',clev,t3)
 c4=draw(fig,axes[1][1],4,'(d) ATM NETCRF,WMME ',clev,t4)
 clev=np.arange(-40,41,5)
 c5=draw(fig,axes[2][0],5,'(e) CLT,BMME ',clev,t5)
-c6=draw(fig,axes[2][1],6,'(f) CLT,WMME                             %',clev,t6)
-position = fig.add_axes([0.92, 0.35, 0.010, 0.45])#位置[左,下,宽,高]
+c6=draw(fig,axes[2][1],6,'(f) CLT,WMME ',clev,t6)
+position = fig.add_axes([0.92, 0.4, 0.010, 0.48])#位置[左,下,宽,高]
 cb=fig.colorbar(c2,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
-cb.ax.tick_params(labelsize=18)
-position = fig.add_axes([0.92, 0.1, 0.010, 0.2])#位置[左,下,宽,高]
+cb.ax.tick_params(labelsize=9)
+cb.set_label('W m$^{-2}$', fontsize=9,rotation=270)
+position = fig.add_axes([0.92, 0.1, 0.010, 0.23])#位置[左,下,宽,高]
 cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-plt.savefig('../fig/bwmme_clt_crf_map.png',bbox_inches='tight')
+cb.ax.tick_params(labelsize=9)
+cb.set_label('%', fontsize=9,rotation=270)
+plt.savefig('../fig/bwmme_clt_crf_map.svg',bbox_inches='tight')

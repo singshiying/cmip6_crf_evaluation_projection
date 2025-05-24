@@ -19,8 +19,7 @@ data_out_xr2=xr.DataArray(data_out2,coords=[np.arange(0,5,1),olat,olon,models],d
 
 data_out3=np.load('../fig4_s3_v2.npy')#5x180x360x21  aVI指数
 data_out_xr3=xr.DataArray(data_out3,coords=[np.arange(0,5,1),olat,olon,models],dims=['vars','lat','lon','models'])
-
-bmme=['EC-Earth3-CC','MPI-ESM1-2-HR','MPI-ESM1-2-LR','CMCC-CM2-SR5']
+bmme=['EC-Earth3-CC','MPI-ESM1-2-HR','CESM2-WACCM','GFDL-ESM4']
 wmme=['FGOALS-g3','CAS-ESM2-0','NESM3','INM-CM4-8']
 
 tt1=data_out_xr2.loc[0,:,:,list(set(bmme))].mean('models')+data_out_xr2.loc[1,:,:,list(set(bmme))].mean('models')
@@ -47,23 +46,23 @@ def draw_s(fig,axe,num,label,clev,data):
     axe.coastlines(resolution='110m', linewidth=0.75)
     if num==1 or num==3 or num==5:
         axe.set_yticks([-60,-30,0,30,60])
-        axe.set_yticklabels(['60$^\circ$S','30$^\circ$S','0','30$^\circ$N','60$^\circ$N'],fontsize=18)
+        axe.set_yticklabels(['60$^\circ$S','30$^\circ$S','0','30$^\circ$N','60$^\circ$N'],fontsize=9)
     else:
         axe.set_yticks([])
     if num==5 or num==6 or num==9:
         axe.set_xticks([-90,0,90])
-        axe.set_xticklabels(['90$^\circ$E','0','90$^\circ$W'],fontsize=18)
+        axe.set_xticklabels(['90$^\circ$E','0','90$^\circ$W'],fontsize=9)
     else:
         axe.set_xticks([])
-    axe.set_title(label,loc='left',fontsize=24)
+    axe.set_title(label,loc='left',fontsize=9)
     return c
 
 fig,axes=plt.subplots(3,2,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
 fig.subplots_adjust(wspace=0.05,hspace=0.17,right=0.9,top=0.8,bottom=0.1)
-fig.set_figheight(11)
-fig.set_figwidth(13)
+fig.set_figheight(5)
+fig.set_figwidth(5.5)
 fig.set_dpi(300)
-clev=np.arange(0,20,1)
+clev=np.arange(0,20,2)
 c1=draw_s(fig,axes[0][0],1,'(a) TOA NETCRF SVI,BMME ',clev,tt1)
 c2=draw_s(fig,axes[0][1],2,'(b) TOA NETCRF SVI,WMME',clev,tt2)
 c3=draw_s(fig,axes[1][0],3,'(c) ATM NETCRF SVI,BMME ',clev,tt3)
@@ -72,17 +71,17 @@ c5=draw_s(fig,axes[2][0],5,'(e) CLT SVI,BMME ',clev,tt5)
 c6=draw_s(fig,axes[2][1],6,'(f) CLT SVI,WMME',clev,tt6)
 position = fig.add_axes([0.92, 0.1, 0.010, 0.7])#位置[左,下,宽,高]
 cb=fig.colorbar(c2,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
-cb.ax.tick_params(labelsize=18)
+cb.ax.tick_params(labelsize=9)
 # position = fig.add_axes([0.92, 0.1, 0.010, 0.2])#位置[左,下,宽,高]
 # cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-plt.savefig('../fig/bwmme_svi.png',bbox_inches='tight')
+plt.savefig('../fig/bwmme_svi.svg',bbox_inches='tight')
 
 fig,axes=plt.subplots(3,2,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
 fig.subplots_adjust(wspace=0.05,hspace=0.17,right=0.9,top=0.8,bottom=0.1)
-fig.set_figheight(11)
-fig.set_figwidth(13)
+fig.set_figheight(5)
+fig.set_figwidth(5.5)
 fig.set_dpi(300)
-clev=np.arange(0,20,1)
+clev=np.arange(0,20,2)
 c1=draw_s(fig,axes[0][0],1,'(a) TOA NETCRF AVI,BMME ',clev,ttt1)
 c2=draw_s(fig,axes[0][1],2,'(b) TOA NETCRF AVI,WMME',clev,ttt2)
 c3=draw_s(fig,axes[1][0],3,'(c) ATM NETCRF AVI,BMME ',clev,ttt3)
@@ -91,7 +90,7 @@ c5=draw_s(fig,axes[2][0],5,'(e) CLT AVI,BMME ',clev,ttt5)
 c6=draw_s(fig,axes[2][1],6,'(f) CLT AVI,WMME',clev,ttt6)
 position = fig.add_axes([0.92, 0.1, 0.010, 0.7])#位置[左,下,宽,高]
 cb=fig.colorbar(c2,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
-cb.ax.tick_params(labelsize=18)
+cb.ax.tick_params(labelsize=9)
 # position = fig.add_axes([0.92, 0.1, 0.010, 0.2])#位置[左,下,宽,高]
 # cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-plt.savefig('../fig/bwmme_avi.png',bbox_inches='tight')
+plt.savefig('../fig/bwmme_avi.svg',bbox_inches='tight')

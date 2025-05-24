@@ -15,8 +15,16 @@ font =FontProperties(family='Arial')
 plt.rcParams['font.family']=font.get_name()
 
 models=['ACCESS-CM2','ACCESS-ESM1-5','AWI-CM-1-1-MR','BCC-CSM2-MR','CanESM5','CAS-ESM2-0','CESM2-WACCM','CIESM','CMCC-CM2-SR5','E3SM-1-0','EC-Earth3-CC','FGOALS-f3-L','FGOALS-g3','GFDL-ESM4','INM-CM4-8','INM-CM5-0','IPSL-CM6A-LR','KACE-1-0-G','KIOST-ESM','MIROC6','MPI-ESM1-2-HR','MPI-ESM1-2-LR','MRI-ESM2-0','NESM3','AMME']
-csr_rank=xr.open_dataarray('../data/csr_vi_rank_score_21x35.nc')
-print(csr_rank)
+csr_rank=xr.open_dataarray('../data/csr_vi_rank_score_21x35.nc').values
+csr_rank2=xr.open_dataarray('../data/csr_vi_rank_score_21x35_60NS.nc').values
+# print(csr_rank)
+csr_rank_combined = np.concatenate((csr_rank[:,[3,6,10,13,17,20,24,27,34]], csr_rank2[:,[31]]), axis=1)
+index1=np.argsort(np.mean(csr_rank_combined, axis=1))
+models_p1=np.array(models)[index1]
+csr_rank_temp=csr_rank.copy()
+csr_rank_temp[:,28:31]=csr_rank2[:,28:31]
+csr_rank_p1=csr_rank_temp[index1,:]
+print(csr_rank_p1)
 # sp_rank=np.zeros([5,5])
 # sp_p=np.zeros([5,5])
 # tm_rank=np.zeros([5,5])
@@ -28,15 +36,15 @@ all_rank=np.zeros([5,5])
 _p=np.zeros([5,5])
 for v1 in range(5):
     for v2 in range(5):
-        a=csr_rank[:,5*v1+3]+csr_rank[:,5*v1+6]#csr+vi
-        b=csr_rank[:,5*v2+3]+csr_rank[:,5*v2+6]#csr+vi
+        a=csr_rank_p1[:,5*v1+3]+csr_rank_p1[:,5*v1+6]#csr+vi
+        b=csr_rank_p1[:,5*v2+3]+csr_rank_p1[:,5*v2+6]#csr+vi
         all_rank[v1,v2],all_p[v1,v2] = kendalltau(a,b)
 print('-----')
 print(all_rank)
 print(all_p<0.05)
 varsname=['TOA SWCRF','TOA LWCRF','SFC SWCRF','SFC LWCRF','CLT']
 ####draw##################
-fig = plt.figure(figsize=(3,3),dpi=400)
+fig = plt.figure(figsize=(3,3),dpi=300)
 ax = sns.heatmap(all_rank, vmin=0,vmax=1,annot=all_rank,annot_kws={"fontsize":9},fmt='.2f',cmap='Greens',linewidths=0.5)
 ax.set_adjustable('box')
 ax.set_xticklabels(varsname,fontsize=9,rotation=90)
@@ -48,4 +56,4 @@ for i in range(5):
         if all_p[i,j] < 0.05:
             ax.add_patch(plt.Rectangle((j, i), 1, 1, color="red", fill=False, linewidth=1))
 
-plt.savefig('../fig/rank_kendall.png',bbox_inches='tight')
+plt.savefig('../fig/rank_kendall.svg',bbox_inches='tight')

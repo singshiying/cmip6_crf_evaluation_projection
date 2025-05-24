@@ -26,8 +26,10 @@ plt.rcParams['font.family']=font.get_name()
 
 ##clt only 60NS
 ##based on all
-bmme=['CESM2-WACCM','EC-Earth3-CC','MPI-ESM1-2-HR','ACCESS-CM2']
+# bmme=['CESM2-WACCM','EC-Earth3-CC','MPI-ESM1-2-HR','ACCESS-CM2']
 wmme=['CAS-ESM2-0','FGOALS-g3','INM-CM4-8','NESM3']
+bmme=['CESM2-WACCM','EC-Earth3-CC','MPI-ESM1-2-HR','GFDL-ESM4']
+
 
 
 ##读取ceres的200101-201412数据
@@ -115,8 +117,8 @@ t8=t8-np.mean(t8[0:14,:],0)
 fig,ax=plt.subplots(4,1,figsize=(5.5,10),dpi=300)
 fig.subplots_adjust(hspace=0.2) # Adjust vertical spacing between subplots
 colors=plt.cm.nipy_spectral(np.linspace(0,1,20))
-draw3_range(ax[0],t1,t1.loc[:,list(set(bmme))],t1.loc[:,list(set(wmme))],t2,t2.loc[:,list(set(bmme))],t2.loc[:,list(set(wmme))],obs2[0,:]+obs2[1,:],'a) Toa net crf',1)
-draw3_range(ax[1],t3,t3.loc[:,list(set(bmme))],t3.loc[:,list(set(wmme))],t4,t4.loc[:,list(set(bmme))],t4.loc[:,list(set(wmme))],obs2[2,:]+obs2[3,:],'b) sfc net crf',2)
+draw3_range(ax[0],t1,t1.loc[:,list(set(bmme))],t1.loc[:,list(set(wmme))],t2,t2.loc[:,list(set(bmme))],t2.loc[:,list(set(wmme))],obs2[0,:]+obs2[1,:],'a) TOA NETCRF',1)
+draw3_range(ax[1],t3,t3.loc[:,list(set(bmme))],t3.loc[:,list(set(wmme))],t4,t4.loc[:,list(set(bmme))],t4.loc[:,list(set(wmme))],obs2[2,:]+obs2[3,:],'b) SFC NETCRF',2)
 draw3_range(ax[2],t5,t5.loc[:,list(set(bmme))],t5.loc[:,list(set(wmme))],t6,t6.loc[:,list(set(bmme))],t6.loc[:,list(set(wmme))],obs2[4,:],'c) CLT',3)
 draw3_range(ax[3],t7,t7.loc[:,list(set(bmme))],t7.loc[:,list(set(wmme))],t8,t8.loc[:,list(set(bmme))],t8.loc[:,list(set(wmme))],obs2[5,:],'d) Tas',4)
-plt.savefig('../fig/bwmme_ssp_trend.png',bbox_inches='tight')
+plt.savefig('../fig/bwmme_ssp_trend.svg',bbox_inches='tight')

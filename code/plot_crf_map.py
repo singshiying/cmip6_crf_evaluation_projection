@@ -57,7 +57,7 @@ cb=fig.colorbar(c3,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
 cb.ax.tick_params(labelsize=9)
 cb.set_label('W m$^{-2}$', fontsize=9,rotation=270)
 cb.set_ticks([-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100])
-plt.savefig('../fig/crf_obs_map.png',bbox_inches='tight')
+plt.savefig('../fig/crf_obs_map.svg',bbox_inches='tight')
 
 fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
 for ax in axes.flat:
@@ -78,7 +78,7 @@ position = fig.add_axes([0.92, 0.1, 0.010, 0.8])
 cb=fig.colorbar(c3,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
 cb.ax.tick_params(labelsize=9)
 cb.set_label('W m$^{-2}$', fontsize=9,rotation=270)
-plt.savefig('../fig/crf_bias_map.png',bbox_inches='tight')
+plt.savefig('../fig/crf_bias_map.svg',bbox_inches='tight')
 
 fig,axes=plt.subplots(3,3,subplot_kw={'projection':ccrs.PlateCarree(central_longitude=180)})
 # 设置所有子图的长宽比
@@ -101,4 +101,4 @@ cb=fig.colorbar(c3,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
 cb.ax.tick_params(labelsize=9)
 cb.set_label('W m$^{-2}$', fontsize=9,rotation=270)
 cb.set_ticks([-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100])
-plt.savefig('../fig/crf_amme_map.png',bbox_inches='tight')
+plt.savefig('../fig/crf_amme_map.svg',bbox_inches='tight')
