@@ -99,14 +99,15 @@ def draw3_range(ax,ssp245_all,ssp245_bmme,ssp245_wmme,ssp585_all,ssp585_bmme,ssp
     if num==1:
         ax.legend(fontsize=9,bbox_to_anchor=(1,1))
 
-t1=(ssp245_ts_xr.loc[0,:,models20]+ssp245_ts_xr.loc[1,:,models20]).groupby('time.year').mean().loc['2001':'2101']
-t2=(ssp585_ts_xr.loc[0,:,models20]+ssp585_ts_xr.loc[1,:,models20]).groupby('time.year').mean().loc['2001':'2101']
-t3=(ssp245_ts_xr.loc[2,:,models20]+ssp245_ts_xr.loc[3,:,models20]).groupby('time.year').mean().loc['2001':'2101']
-t4=(ssp585_ts_xr.loc[2,:,models20]+ssp585_ts_xr.loc[3,:,models20]).groupby('time.year').mean().loc['2001':'2101']
-t5=ssp245_ts_xr.loc[4,:,models20].groupby('time.year').mean().loc['2001':'2101']
-t6=ssp585_ts_xr.loc[4,:,models20].groupby('time.year').mean().loc['2001':'2101']
-t7=ssp245_ts_xr.loc[5,:,models20].groupby('time.year').mean().loc['2001':'2101']
-t8=ssp585_ts_xr.loc[5,:,models20].groupby('time.year').mean().loc['2001':'2101']
+t1=(ssp245_ts_xr.loc[0,:,models20]+ssp245_ts_xr.loc[1,:,models20]).groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
+print(t1.shape)
+t2=(ssp585_ts_xr.loc[0,:,models20]+ssp585_ts_xr.loc[1,:,models20]).groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
+t3=(ssp245_ts_xr.loc[2,:,models20]+ssp245_ts_xr.loc[3,:,models20]).groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
+t4=(ssp585_ts_xr.loc[2,:,models20]+ssp585_ts_xr.loc[3,:,models20]).groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
+t5=ssp245_ts_xr.loc[4,:,models20].groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
+t6=ssp585_ts_xr.loc[4,:,models20].groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
+t7=ssp245_ts_xr.loc[5,:,models20].groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
+t8=ssp585_ts_xr.loc[5,:,models20].groupby('time.year').mean().loc['2001':'2101'].rolling(year=10, center=True).mean()
 t1=t1-np.mean(t1[0:14,:],0)
 t2=t2-np.mean(t2[0:14,:],0)
 t3=t3-np.mean(t3[0:14,:],0)
@@ -127,3 +128,13 @@ draw3_range(ax[0],t1,t1.loc[:,list(set(bmme))],t1.loc[:,list(set(wmme))],t2,t2.l
 draw3_range(ax[1],t3,t3.loc[:,list(set(bmme))],t3.loc[:,list(set(wmme))],t4,t4.loc[:,list(set(bmme))],t4.loc[:,list(set(wmme))],obs2[2,:]+obs2[3,:],'b) SFC NETCRF',2)
 draw3_range(ax[2],t7,t7.loc[:,list(set(bmme))],t7.loc[:,list(set(wmme))],t8,t8.loc[:,list(set(bmme))],t8.loc[:,list(set(wmme))],obs2[5,:],'c) Tas',4)
 plt.savefig('../fig2/bwmme_ssp_trend.png',bbox_inches='tight')
+
+# fig,ax=plt.subplots(4,1,figsize=(5.5,9),dpi=300)
+# fig.subplots_adjust(hspace=0.4) # Adjust vertical spacing between subplots
+# colors=plt.cm.nipy_spectral(np.linspace(0,1,20))
+# draw3_range(ax[0],t1,t1.loc[:,list(set(bmme))],t1.loc[:,list(set(wmme))],t2,t2.loc[:,list(set(bmme))],t2.loc[:,list(set(wmme))],obs2[0,:]+obs2[1,:],'a) TOA NETCRF',1)
+# draw3_range(ax[1],t1-t3,(t1-t3).loc[:,list(set(bmme))],(t1-t3).loc[:,list(set(wmme))],t2-t4,(t2-t4).loc[:,list(set(bmme))],(t2-t4).loc[:,list(set(wmme))],obs2[0,:]+obs2[1,:]-(obs2[2,:]+obs2[3,:]),'b) ATM NETCRF',1)
+
+# draw3_range(ax[2],t3,t3.loc[:,list(set(bmme))],t3.loc[:,list(set(wmme))],t4,t4.loc[:,list(set(bmme))],t4.loc[:,list(set(wmme))],obs2[2,:]+obs2[3,:],'b) SFC NETCRF',2)
+# draw3_range(ax[3],t7,t7.loc[:,list(set(bmme))],t7.loc[:,list(set(wmme))],t8,t8.loc[:,list(set(bmme))],t8.loc[:,list(set(wmme))],obs2[5,:],'c) Tas',4)
+# plt.savefig('../fig2/bwmme_ssp_trend.png',bbox_inches='tight')
