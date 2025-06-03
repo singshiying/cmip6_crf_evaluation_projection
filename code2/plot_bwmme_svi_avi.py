@@ -77,5 +77,5 @@ cb=fig.colorbar(c2,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
 cb.ax.tick_params(labelsize=9)
 # position = fig.add_axes([0.92, 0.1, 0.010, 0.2])#位置[左,下,宽,高]
 # cb=fig.colorbar(c6,cax=position,shrink=0.8,fraction=0.03, format='% 1.0f')
-plt.savefig('../fig2/bwmme_svi_avi.png',bbox_inches='tight')
+plt.savefig('../fig2/bwmme_svi_avi.svg',bbox_inches='tight')
 

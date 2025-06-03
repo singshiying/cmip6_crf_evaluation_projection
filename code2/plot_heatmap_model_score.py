@@ -69,4 +69,4 @@ cbar = ax.collections[0].colorbar
 cbar.ax.tick_params(labelsize=16)
 plt.tight_layout(rect=[0, 0, 0.98, 1]) # Adjust layout to bring colorbar even closer
 
-plt.savefig('../fig2/heatmap_model_score.png',bbox_inches='tight')
+plt.savefig('../fig2/heatmap_model_score.svg',bbox_inches='tight')

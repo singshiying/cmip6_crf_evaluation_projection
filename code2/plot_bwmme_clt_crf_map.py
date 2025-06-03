@@ -62,4 +62,4 @@ position = fig.add_axes([0.92, 0.1, 0.010, 0.8])#位置[左,下,宽,高]
 cb=fig.colorbar(c2,shrink=0.8,cax=position,fraction=0.03, format='% 1.0f')
 cb.ax.tick_params(labelsize=9)
 cb.set_label('W m$^{-2}$', fontsize=9,rotation=270)
-plt.savefig('../fig2/bwmme_crf_map.png',bbox_inches='tight')
+plt.savefig('../fig2/bwmme_crf_map.svg',bbox_inches='tight')

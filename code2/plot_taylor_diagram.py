@@ -113,4 +113,4 @@ ax1.text(0.85,0.83,'ATM SWCRF',color='darkblue',transform=ax1.transAxes,fontsize
 ax1.text(0.85,0.77,'ATM LWCRF',color='darkred',transform=ax1.transAxes,fontsize=9*2)
 # ax1.text(0.85,0.71,'CLT',color='g',transform=ax1.transAxes,fontsize=9*2)
 
-plt.savefig('../fig2/taylor_diagram.png',bbox_inches='tight')
+plt.savefig('../fig2/taylor_diagram.svg',bbox_inches='tight')

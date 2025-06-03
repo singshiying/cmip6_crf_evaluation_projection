@@ -70,4 +70,4 @@ ax2=fig.add_subplot(212)
 titles=['a) Top of atmoshpere shortwave radiative forcing','b) Top of atmoshpere longwave radiative forcing','c) Surface shortwave radiative forcing','d) Surface longwave radiative forcing','e) Total cloud amount']
 draw_bar(ax2,s,titles,2)
 fig.subplots_adjust(wspace=0.05,hspace=0.05,right=0.9,top=0.9,bottom=0.1)
-plt.savefig('../fig2/variability_index.png',bbox_inches='tight')
+plt.savefig('../fig2/variability_index.svg',bbox_inches='tight')
