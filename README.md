@@ -28,9 +28,3 @@ Figures are stored in png format for reference and further analysis.
 - The code complements the methods described in the paper; refer to the publication for detailed methodology.
 - Dependencies and required datasets are specified within individual code files.
 - When referencing figures, please cite the original paper.
-
-## Citation
-
-If you use the code or figures from this repository, please cite:
-
-Shi, Y., Zhang, H., Zhang, M. Better CMIP6 Models in the Simulation of Cloud Radiative Fields Indicate Larger Cloud Feedback. Advances in Atmospheric Sciences.
